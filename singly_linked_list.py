@@ -152,10 +152,3 @@ class LinkedList:
         return max_so_far
 
 
-
-
-:thankyou7:
-2
-:+1:
-1
-
