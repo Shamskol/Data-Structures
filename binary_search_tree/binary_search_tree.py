@@ -9,6 +9,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,52 +19,66 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-    # if new < node.value
+        # if new < node.value
         if value < self.value:
-            #if left doesn't exist
+            # if left doesn't exist
             if self.left is None:
-     #           create left
+             #           create left
                 self.left = BinarySearchTree(value)
             else:
-                    self.left.insert(value)
-        else: #Value is greater than or equal to
+                self.left.insert(value)
+        else:  # Value is greater than or equal to
             if self.right is None:
                 self.right = BinarySearchTree(value)
             else:
-                 self.right.insert(value)   
-
-
-
-
-        
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
+
     def contains(self, target):
         if self.value == target:
             return True
-       elif target < self.value:
+        elif target < self.value:
             if self.left is None:
-                return False 
+                return False
             else:
-                return self.left.contains(target)        
+                return self.left.contains(target)
         else:
             if self.right is None:
                 return False
             else:
-                return self.right.contains(target)    
-       
-            
-            
-
+                return self.right.contains(target)
 
     # Return the maximum value found in the tree
+
     def get_max(self):
-        pass
+      # we can just keep going right
+        if not self.right:
+            return self.value
+        return self.right.get_max()
 
     # Call the function `fn` on the value of each node
+    # doesn't actually return everything
     def for_each(self, fn):
-        pass
+     # this method does want to traverse eery tree node
+     # this has to call the fn on self.value
+
+        fn(self.value)
+# how do we propagate to all the other nodes in the tree?
+# is there a  left child?
+
+        if self.left:
+            # if yes, then call its 'for each' with the same fn
+
+            self.left.for_each(fn)
+
+# is there a right child?
+        if self.right:
+            # if yes then call its 'for_ each' with same fn
+            self.right.for_each(fn)
+
+            
 
     # Part 2 -----------------------
 
